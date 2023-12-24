@@ -1,91 +1,127 @@
-# node-ocpi
+# node-ocpi Library Documentation
 
-A Node.js library for handling Open Charge Point Interface (OCPI) data structures, including `Location`, `EVSE`, `Connector`, and `CDR` (Charge Detail Record) classes. This library helps in creating OCPI-compliant charging station management applications by providing structured data models and validation.
+## Overview
+
+`node-ocpi` is a Node.js library designed for the implementation of the Open Charge Point Interface (OCPI) protocol. It provides structured models and validation for various OCPI entities, making it ideal for developers building applications for EV charging stations and related services.
 
 ## Features
 
-- Models for key OCPI entities: `Location`, `EVSE`, `Connector`, `CDR`.
-- Data validation for OCPI-compliant structure and format.
-- Easy integration into Node.js projects.
+- Models for key OCPI entities: `Location`, `EVSE`, `Connector`, `CDR`, `Command`, `Transaction`, `Feedback`, `Meter`, `Reservation`, `Tariff`, `User`.
+- Comprehensive validation for OCPI-compliant data structures.
+- Supports a wide range of OCPI operations and functionalities.
 
 ## Installation
 
-To install the `node-ocpi` library, use npm:
+You can install `node-ocpi` using npm with the following command:
 
 ```bash
 npm install https://github.com/hyndex/node-ocpi
 ```
 
+This command fetches and installs the library directly from the specified GitHub repository.
+
 ## Usage
 
-Here's how to use the `node-ocpi` library in your project:
-
-### Importing the Library
+Import the models you need from the `node-ocpi` library as follows:
 
 ```javascript
-const { Location, EVSE, Connector, CDR } = require('node-ocpi');
+const { Location, EVSE, Connector, CDR, Command, Transaction, Feedback, Meter, Reservation, Tariff, User } = require('node-ocpi');
 ```
 
-### Creating and Using an OCPI Object
+### Model Usage Examples
+
+Below are examples showing how to create instances of each model and perform data validation:
 
 #### Location
 
 ```javascript
-const location = new Location(/* parameters */);
-// Validate location data
+const location = new Location('loc1', 'ON_STREET', 'Main Street Charging Station', '123 Main St', 'Anytown', '12345', 'USA', { latitude: 52.520008, longitude: 13.404954 });
 location.validate();
 ```
 
 #### EVSE
 
 ```javascript
-const evse = new EVSE(/* parameters */);
-// Validate EVSE data
+const evse = new EVSE('evse1', 'loc1', 'AVAILABLE', ['CHADEMO']);
 evse.validate();
 ```
 
 #### Connector
 
 ```javascript
-const connector = new Connector(/* parameters */);
-// Validate connector data
+const connector = new Connector('1', 'IEC_62196_T2', 'CABLE', 'AC_3_PHASE', 400, 16, 0);
 connector.validate();
 ```
 
 #### CDR
 
 ```javascript
-const cdr = new CDR(/* parameters */);
-// Validate CDR data
+const cdr = new CDR('cdr1', new Date(), new Date(), 'session1', 'token1', 'authMethod1', { id: 'loc1', address: '123 Main St' }, 'evse1', '1', 'meter1', 'EUR', 15.00);
 cdr.validate();
 ```
 
-## API Reference
+#### Command
 
-### Location Class
+```javascript
+const command = new Command('cmd1', 'START_TRANSACTION', { connectorId: '1', idTag: 'tag1' });
+command.validate();
+```
 
-- Constructor parameters: `id`, `type`, `name`, `address`, `city`, `postalCode`, `country`, `coordinates`, `relatedLocations`, `parkingType`, `evse`, `facilities`, `time_zone`, `opening_times`, `charging_when_closed`, `images`, `energy_mix`, `business_details`, `operator`, `suboperator`, `owner`, `clearinghouse`.
-- Methods: `validate()`.
+#### Transaction
 
-### EVSE Class
+```javascript
+const transaction = new Transaction('txn1', 'tag1', new Date(), 100, 'loc1', 'evse1', '1');
+transaction.validate();
+```
 
-- Constructor parameters: `uid`, `evse_id`, `status`, `capabilities`, `connectors`, `floor_level`, `coordinates`, `physical_reference`, `directions`, `parking_restrictions`, `images`, `charging_when_closed`, `last_updated`, `energy_mix`, `accessibility`, `related_evses`, `group_id`, `pricing_policy`, `realtime_data`.
-- Methods: `validate()`.
+#### Feedback
 
-### Connector Class
+```javascript
+const feedback = new Feedback('feedback1', 'user1', 'Great charging station!', 5);
+feedback.validate();
+```
 
-- Constructor parameters: `id`, `standard`, `format`, `powerType`, `maxVoltage`, `maxAmperage`, `maxElectricPower`, `voltage`, `amperage`, `tariff_id`, `last_updated`, `terms_and_conditions`, `phase_to_phase_voltage`, `phase`, `pricing`, `parking_spot`, `accessibility`, `authentication_modes`, `identification_restrictions`, `payment_methods`, `supported_energy_mix`.
-- Methods: `validate()`.
+#### Meter
 
-### CDR Class
+```javascript
+const meter = new Meter('meter1', 500, new Date());
+meter.validate();
+```
 
-- Constructor parameters: `id`, `startDateTime`, `endDateTime`, `authId`, `authMethod`, `location`, `evseId`, `connectorId`, `meterId`, `currency`, `totalCost`, `chargingPeriods`, `totalEnergy`, `totalTime`, `lastUpdated`, `stopReason`, `totalParkingTime`, `totalReservationCost`, `remark`, `signedData`, `relatedCDRs`, `locationReference`, `productData`, `chargingPreferences`, `environmentalImpact`.
-- Methods: `validate()`.
+#### Reservation
+
+```javascript
+const reservation = new Reservation('res1', new Date(), new Date(), 'loc1', 'evse1', 'tag1');
+reservation.validate();
+```
+
+#### Tariff
+
+```javascript
+const tariff = new Tariff('tariff1', 'EUR', [{ type: 'TIME', price: 2.00 }]);
+tariff.validate();
+```
+
+#### User
+
+```javascript
+const user = new User('user1', 'John Doe', 'john.doe@example.com', true);
+user.validate();
+```
 
 ## Contributing
 
-Contributions to `node-ocpi` are welcome! Please refer to the contributing guidelines for details on how to contribute to this project.
+Contributions to `node-ocpi` are always welcome. To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature.
+3. Implement your feature or bug fix.
+4. Write or adapt tests as needed.
+5. Update the documentation.
+6. Commit and push your changes.
+7. Submit a pull request.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+`node-ocpi` is released under the MIT License. See the [LICENSE](LICENSE.md) file for more details.
+
