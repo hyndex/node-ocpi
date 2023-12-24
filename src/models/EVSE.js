@@ -16,7 +16,7 @@ class EVSE {
         this.parking_restrictions = parking_restrictions || [];
         this.images = images || [];
         this.charging_when_closed = Boolean(charging_when_closed);
-        this.last_updated = new Date(last_updated).toISOString();
+        this.last_updated = new Date(last_updated);
         this.energy_mix = energy_mix || {};
         this.accessibility = String(accessibility);
         this.related_evses = related_evses || [];

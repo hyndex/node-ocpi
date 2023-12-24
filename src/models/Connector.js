@@ -12,7 +12,7 @@ class Connector {
         this.voltage = Number(voltage);
         this.amperage = Number(amperage);
         this.tariff_id = String(tariff_id);
-        this.last_updated = new Date(last_updated).toISOString();
+        this.last_updated = new Date(last_updated);
         this.terms_and_conditions = String(terms_and_conditions);
         this.phase_to_phase_voltage = Number(phase_to_phase_voltage);
         this.phase = Number(phase);
