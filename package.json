@@ -9,6 +9,7 @@
   "author": "Chinmoy Bhuyan",
   "license": "MIT",
   "dependencies": {
-    "joi": "^17.4.2"
+    "joi": "^17.4.2",
+    "node-ocpi": "^1.0.0"
   }
 }
