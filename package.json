@@ -1,16 +1,16 @@
 {
   "name": "node-ocpi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An OCPI library for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Chinmoy Bhuyan",
   "license": "MIT",
   "dependencies": {
     "joi": "^17.4.2",
-    "node-ocpi": "^1.0.1"
+    "node-ocpi": "^1.0.2"
   },
   "keywords": [
     "OCPI",
@@ -34,6 +34,8 @@
     "Node.js OCPI",
     "OCPI integration",
     "OCPI data models"
-]
-
+  ],
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
