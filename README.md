@@ -42,7 +42,7 @@ Below are examples showing how to create instances of each model and perform dat
 #### Location
 
 ```javascript
-const location = new Location('loc1', 'ON_STREET', 'Main Street Charging Station', '123 Main St', 'Anytown', '12345', 'USA', { latitude: 52.520008, longitude: 13.404954 });
+const location = new Location('loc1', 'ON_STREET', 'Main Street Charging Station', '123 Main St', 'Anytown', '12345', 'USA', { latitude: 52.520008, longitude: 13.404954  });
 location.validate();
 ```
 
@@ -70,7 +70,7 @@ cdr.validate();
 #### Command
 
 ```javascript
-const command = new Command('cmd1', 'START_TRANSACTION', { connectorId: '1', idTag: 'tag1' });
+const command = new Command('cmd1', 'START_TRANSACTION', { connectorId: '1', idTag: 'tag1'  });
 command.validate();
 ```
 
@@ -98,7 +98,7 @@ meter.validate();
 #### Reservation
 
 ```javascript
-const reservation = new Reservation('res1', new Date().toISOString(), new Date().toISOString(), 'loc1', 'evse1', { id: 'user1', name: 'John Doe' });
+const reservation = new Reservation('res1', new Date().toISOString(), new Date().toISOString(), 'loc1', 'evse1', { id: 'user1', name: 'John Doe'  });
 reservation.validate();
 ```
 

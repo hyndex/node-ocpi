@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 class Feedback {
-    constructor(id, rating, comment, userId) {
+    constructor({ id, rating, comment, userId }) {
         this.id = String(id);
         this.rating = Number(rating); // Rating given by the user
         this.comment = String(comment); // Feedback comment
@@ -9,12 +9,12 @@ class Feedback {
     }
 
     validate() {
-        const schema = Joi.object({
+        const schema = Joi.object({ 
             id: Joi.string().required(),
             rating: Joi.number().required(),
             comment: Joi.string().required(),
             userId: Joi.string().required(),
-        });
+         });
 
         const { error } = schema.validate(this);
 

@@ -1,5 +1,60 @@
-const Joi = require('joi');
+const Location = require('./Location'); // Ensure the Location model is in the correct path
 
+class Dimension {
+    constructor(type, volume) {
+        this.type = String(type);
+        this.volume = Number(volume);
+    }
+
+    static get schema() {
+        return Joi.object({ 
+            type: Joi.string().required(),
+            volume: Joi.number().required()
+         });
+    }
+}
+
+class ChargingPeriod {
+    constructor(startDateTime, dimensions) {
+        this.startDateTime = new Date(startDateTime);
+        this.dimensions = dimensions.map(d => new Dimension(d.type, d.volume));
+    }
+
+    static get schema() {
+        return Joi.object({ 
+            startDateTime: Joi.date().required(),
+            dimensions: Joi.array().items(Dimension.schema).required()
+         });
+    }
+}
+
+class Token {
+    constructor({ uid, type, authId, visualNumber, issuer, valid, whitelist, language, lastUpdated }) {
+        this.uid = String(uid);
+        this.type = String(type);
+        this.authId = String(authId);
+        this.visualNumber = String(visualNumber);
+        this.issuer = String(issuer);
+        this.valid = Boolean(valid);
+        this.whitelist = String(whitelist);
+        this.language = String(language);
+        this.lastUpdated = new Date(lastUpdated);
+    }
+
+    static get schema() {
+        return Joi.object({ 
+            uid: Joi.string().required(),
+            type: Joi.string().required(),
+            authId: Joi.string().required(),
+            visualNumber: Joi.string().required(),
+            issuer: Joi.string().required(),
+            valid: Joi.boolean().required(),
+            whitelist: Joi.string().required(),
+            language: Joi.string().required(),
+            lastUpdated: Joi.date().required()
+         });
+    }
+}
 
 class CDR {
     constructor(id, startDateTime, endDateTime, authId, authMethod, location, evseId, connectorId, meterId, currency, totalCost, chargingPeriods, totalEnergy, totalTime, lastUpdated, stopReason, totalParkingTime, totalReservationCost, remark, signedData, relatedCDRs, locationReference, productData, chargingPreferences, environmentalImpact) {
@@ -14,7 +69,6 @@ class CDR {
         this.meterId = String(meterId);
         this.currency = String(currency);
         this.totalCost = Number(totalCost);
-        this.chargingPeriods = Array.isArray(chargingPeriods) ? chargingPeriods : [];
         this.totalEnergy = Number(totalEnergy);
         this.totalTime = Number(totalTime);
         this.lastUpdated = new Date(lastUpdated).toISOString();
@@ -28,10 +82,14 @@ class CDR {
         this.productData = productData || {};
         this.chargingPreferences = chargingPreferences || {};
         this.environmentalImpact = environmentalImpact || {};
+
+        this.cdrToken = new Token(cdrToken.uid, cdrToken.type, cdrToken.authId, cdrToken.visualNumber, cdrToken.issuer, cdrToken.valid, cdrToken.whitelist, cdrToken.language, cdrToken.lastUpdated);
+        this.chargingPeriods = chargingPeriods.map(period => new ChargingPeriod(period.startDateTime, period.dimensions));
+  
     }
 
     validate() {
-        const schema = Joi.object({
+        const schema = Joi.object({ 
             id: Joi.string().required(),
             startDateTime: Joi.date().required(),
             endDateTime: Joi.date().required(),
@@ -43,7 +101,6 @@ class CDR {
             meterId: Joi.string().required(),
             currency: Joi.string().required(),
             totalCost: Joi.number().required(),
-            chargingPeriods: Joi.array().items(Joi.object()), // You should define a Joi schema for ChargingPeriod
             totalEnergy: Joi.number().required(),
             totalTime: Joi.number().required(),
             lastUpdated: Joi.string().required(),
@@ -57,7 +114,11 @@ class CDR {
             productData: Joi.object(), // You should define a Joi schema for ProductData
             chargingPreferences: Joi.object(), // You should define a Joi schema for ChargingPreferences
             environmentalImpact: Joi.object(), // You should define a Joi schema for EnvironmentalImpact
-        });
+
+            cdrToken: Token.schema.required(),
+            chargingPeriods: Joi.array().items(ChargingPeriod.schema).required(),
+
+         });
 
         const { error } = schema.validate(this);
 

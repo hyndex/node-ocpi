@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 class Connector {
-    constructor(id, standard, format, powerType, maxVoltage, maxAmperage, maxElectricPower, voltage, amperage, tariff_id, last_updated, terms_and_conditions, phase_to_phase_voltage, phase, pricing, parking_spot, accessibility, authentication_modes, identification_restrictions, payment_methods, supported_energy_mix) {
+    constructor({ id, standard, format, powerType, maxVoltage, maxAmperage, maxElectricPower, voltage, amperage, tariff_id, last_updated, terms_and_conditions, phase_to_phase_voltage, phase, pricing, parking_spot, accessibility, authentication_modes, identification_restrictions, payment_methods, supported_energy_mix }) {
         this.id = String(id);
         this.standard = String(standard);
         this.format = String(format);
@@ -26,7 +26,7 @@ class Connector {
     }
 
     validate() {
-        const schema = Joi.object({
+        const schema = Joi.object({ 
             id: Joi.string().required(),
             standard: Joi.string().required(),
             format: Joi.string().required(),
@@ -48,7 +48,7 @@ class Connector {
             identification_restrictions: Joi.array().items(Joi.string()), // Define a Joi schema for identification_restrictions
             payment_methods: Joi.array().items(Joi.string()), // Define a Joi schema for payment_methods
             supported_energy_mix: Joi.object(), // Define a Joi schema for supported_energy_mix
-        });
+         });
 
         const { error } = schema.validate(this);
 

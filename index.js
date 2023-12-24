@@ -9,5 +9,6 @@ const Reservation = require('./src/models/Reservation');
 const Tariff = require('./src/models/Tariff');
 const User = require('./src/models/User');
 const Transaction = require('./src/models/Transaction');
+const Credentials = require('./src/models/Credentials');
 
-module.exports = { Location, EVSE, Connector, CDR, Connector, Command, Feedback, Meter, Reservation, Tariff, Transaction, User };
+module.exports = { Location, EVSE, Connector, CDR, Connector, Command, Feedback, Meter, Reservation, Tariff, Transaction, User, Credentials };

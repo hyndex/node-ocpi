@@ -3,7 +3,7 @@ const Joi = require('joi');
 
 
 class EVSE {
-    constructor(uid, evse_id, status, capabilities, connectors, floor_level, coordinates, physical_reference, directions, parking_restrictions, images, charging_when_closed, last_updated, energy_mix, accessibility, related_evses, group_id, pricing_policy, realtime_data) {
+    constructor({ uid, evse_id, status, capabilities, connectors, floor_level, coordinates, physical_reference, directions, parking_restrictions, images, charging_when_closed, last_updated, energy_mix, accessibility, related_evses, group_id, pricing_policy, realtime_data }) {
         this.uid = String(uid);
         this.evse_id = String(evse_id);
         this.status = String(status);
@@ -26,17 +26,17 @@ class EVSE {
     }
 
     validate() {
-        const schema = Joi.object({
+        const schema = Joi.object({ 
             uid: Joi.string().required(),
             evse_id: Joi.string().required(),
             status: Joi.string().required(),
             capabilities: Joi.array().items(Joi.string()), // Define a Joi schema for capabilities
             connectors: Joi.array().items(Joi.object()), // Define a Joi schema for connectors
             floor_level: Joi.string().required(),
-            coordinates: Joi.object({
+            coordinates: Joi.object({ 
                 latitude: Joi.number().required(),
                 longitude: Joi.number().required(),
-            }).required(),
+             }).required(),
             physical_reference: Joi.string().required(),
             directions: Joi.array().items(Joi.object()), // Define a Joi schema for directions
             parking_restrictions: Joi.array().items(Joi.string()), // Define a Joi schema for parking_restrictions
@@ -49,7 +49,7 @@ class EVSE {
             group_id: Joi.string().required(),
             pricing_policy: Joi.string().required(),
             realtime_data: Joi.boolean().required(),
-        });
+         });
 
         const { error } = schema.validate(this);
 
