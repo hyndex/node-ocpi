@@ -1,15 +1,14 @@
 {
-    "name": "ocpi-library",
-    "version": "1.0.0",
-    "description": "An OCPI library for Node.js",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Chinmoy Bhuyan",
-    "license": "MIT",
-    "dependencies": {
-      "joi": "^17.4.2"
-    }
+  "name": "ocpi-library",
+  "version": "1.0.0",
+  "description": "An OCPI library for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chinmoy Bhuyan",
+  "license": "MIT",
+  "dependencies": {
+    "joi": "^17.4.2"
   }
-  
+}

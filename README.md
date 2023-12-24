@@ -13,7 +13,7 @@ A Node.js library for handling Open Charge Point Interface (OCPI) data structure
 To install the `node-ocpi` library, use npm:
 
 ```bash
-npm install node-ocpi
+npm install https://github.com/hyndex/node-ocpi
 ```
 
 ## Usage
