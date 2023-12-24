@@ -12,7 +12,7 @@
 
 ## Features
 
-- Models for key OCPI entities: `Location`, `EVSE`, `Connector`, `CDR`, `Command`, `Transaction`, `Feedback`, `Meter`, `Reservation`, `Tariff`, `User`.
+- Models for key OCPI entities: `Location`, `EVSE`, `Connector`, `CDR`, `Command`, `Transaction`, `Feedback`, `Meter`, `Reservation`, `Tariff`, `User`, `Credentials`.
 - Comprehensive validation for OCPI-compliant data structures.
 - Supports a wide range of OCPI operations and functionalities.
 
@@ -31,7 +31,7 @@ This command fetches and installs the library directly from the specified GitHub
 Import the models you need from the `node-ocpi` library as follows:
 
 ```javascript
-const { Location, EVSE, Connector, CDR, Command, Transaction, Feedback, Meter, Reservation, Tariff, User } = require('node-ocpi');
+const { Location, EVSE, Connector, CDR, Command, Transaction, Feedback, Meter, Reservation, Tariff, User, Credentials } = require('node-ocpi');
 ```
 
 ### Model Usage Examples
@@ -95,6 +95,15 @@ const cdrData = {
 const cdr = new CDR(cdrData);
 cdr.validate();
 ```
+
+#### Credentials
+
+```javascript
+const credentialsData = { /* Your credentials data */ };
+const credentials = new Credentials(credentialsData);
+credentials.validate();
+```
+
 
 ... (Continue with other models in a similar fashion)
 
