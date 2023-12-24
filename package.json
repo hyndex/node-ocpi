@@ -1,6 +1,6 @@
 {
   "name": "node-ocpi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An OCPI library for Node.js",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,30 @@
   "license": "MIT",
   "dependencies": {
     "joi": "^17.4.2",
-    "node-ocpi": "^1.0.0"
-  }
+    "node-ocpi": "^1.0.1"
+  },
+  "keywords": [
+    "OCPI",
+    "Open Charge Point Interface",
+    "EV charging",
+    "electric vehicle",
+    "charging stations",
+    "EVSE",
+    "charge point",
+    "e-mobility",
+    "sustainable transportation",
+    "EV charging network",
+    "OCPI protocol",
+    "OCPI implementation",
+    "EV charging API",
+    "electric vehicle charging",
+    "charging infrastructure",
+    "smart charging",
+    "EV connectivity",
+    "OCPI library",
+    "Node.js OCPI",
+    "OCPI integration",
+    "OCPI data models"
+]
+
 }
