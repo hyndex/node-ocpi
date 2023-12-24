@@ -1,0 +1,15 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Environment variables
+.env
+
+# Output of npm
+npm-debug.log
+
+# Ignore package-lock.json for projects using npm version 5+
+package-lock.json
