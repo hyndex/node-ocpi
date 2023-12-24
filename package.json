@@ -1,6 +1,6 @@
 {
   "name": "node-ocpi",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "An OCPI library for Node.js",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "joi": "^17.4.2",
-    "node-ocpi": "^1.0.5"
+    "node-ocpi": "^1.0.6"
   },
   "keywords": [
     "OCPI",
