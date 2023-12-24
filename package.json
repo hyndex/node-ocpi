@@ -1,6 +1,6 @@
 {
   "name": "node-ocpi",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "An OCPI library for Node.js",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,7 @@
   "author": "Chinmoy Bhuyan",
   "license": "MIT",
   "dependencies": {
-    "joi": "^17.4.2",
-    "node-ocpi": "^1.0.7"
+    "joi": "^17.4.2"
   },
   "keywords": [
     "OCPI",

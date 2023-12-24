@@ -1,11 +1,10 @@
-# node-ocpi Library
+# node-ocpi Library Documentation
 
-![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
-![Made with Love](https://img.shields.io/badge/made%20with-love-ff69b4)
-![Electric Vehicle](https://img.shields.io/badge/electric-vehicle-blue)
-![Eco Friendly](https://img.shields.io/badge/eco-friendly-green)
-![Tree](https://img.shields.io/badge/tree-%F0%9F%8C%B3-green)
-
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/hyndex/node-ocpi)
+[![Made with Love](https://img.shields.io/badge/made%20with-love-ff69b4)](https://github.com/hyndex/node-ocpi)
+[![Electric Vehicle](https://img.shields.io/badge/electric-vehicle-blue)](https://github.com/hyndex/node-ocpi)
+[![Eco Friendly](https://img.shields.io/badge/eco-friendly-green)](https://github.com/hyndex/node-ocpi)
+[![Tree](https://img.shields.io/badge/tree-%F0%9F%8C%B3-green)](https://github.com/hyndex/node-ocpi)
 
 ## Overview
 
@@ -37,84 +36,99 @@ const { Location, EVSE, Connector, CDR, Command, Transaction, Feedback, Meter, R
 
 ### Model Usage Examples
 
-Below are examples showing how to create instances of each model and perform data validation:
+Below are examples showing how to create instances of each model and perform data validation using objects as input:
 
 #### Location
 
 ```javascript
-const location = new Location('loc1', 'ON_STREET', 'Main Street Charging Station', '123 Main St', 'Anytown', '12345', 'USA', { latitude: 52.520008, longitude: 13.404954  });
+const locationData = {
+  id: 'loc1',
+  type: 'ON_STREET',
+  name: 'Main Street Charging Station',
+  address: '123 Main St',
+  city: 'Anytown',
+  postalCode: '12345',
+  country: 'USA',
+  coordinates: { latitude: 52.520008, longitude: 13.404954 },
+  // Other properties as needed
+};
+
+const location = new Location(locationData);
 location.validate();
 ```
 
 #### EVSE
 
 ```javascript
-const evse = new EVSE('evse1', 'loc1', 'AVAILABLE', ['CHADEMO'], ['capability1'], '1', { latitude: 52.520008, longitude: 13.404954 }, 'Floor1', new Date().toISOString(), 'energy_mix');
+const evseData = {
+  uid: 'evse1',
+  locationId: 'loc1',
+  // Other properties as needed
+};
+
+const evse = new EVSE(evseData);
 evse.validate();
 ```
 
 #### Connector
 
 ```javascript
-const connector = new Connector('1', 'IEC_62196_T2', 'CABLE', 'AC_3_PHASE', 400, 16, 22, new Date().toISOString());
+const connectorData = {
+  id: '1',
+  standard: 'IEC_62196_T2',
+  // Other properties as needed
+};
+
+const connector = new Connector(connectorData);
 connector.validate();
 ```
 
 #### CDR
 
 ```javascript
-const cdr = new CDR('cdr1', new Date().toISOString(), new Date().toISOString(), 'token1', 'WHITELIST', location, 'evse1', '1', 'meter1', 'EUR', 15.00, [], 20, 2, new Date().toISOString());
+const cdrData = {
+  id: 'cdr1',
+  startDateTime: '2023-01-01T00:00:00Z',
+  // Other properties as needed
+};
+
+const cdr = new CDR(cdrData);
 cdr.validate();
 ```
 
-#### Command
+... (Continue with other models in a similar fashion)
+
+## Using `node-ocpi` as Middleware in Express.js
+
+You can use `node-ocpi` as middleware in Express.js applications to handle OCPI data:
 
 ```javascript
-const command = new Command('cmd1', 'START_TRANSACTION', { connectorId: '1', idTag: 'tag1'  });
-command.validate();
+const express = require('express');
+const { Location, EVSE, Connector, CDR } = require('node-ocpi');
+
+const app = express();
+app.use(express.json());
+
+// Example: POST route for adding a new charging location
+app.post('/locations', (req, res) => {
+  try {
+    const location = new Location(req.body);
+    location.validate();
+    // Save location to database or handle as needed
+    res.status(201).send(location);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
+// More routes and logic...
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
 ```
 
-#### Transaction
-
-```javascript
-const transaction = new Transaction('txn1', 'PAYMENT_CARD', 20, new Date().toISOString());
-transaction.validate();
-```
-
-#### Feedback
-
-```javascript
-const feedback = new Feedback('feedback1', 'user1', 'Great charging station!', 5, new Date().toISOString());
-feedback.validate();
-```
-
-#### Meter
-
-```javascript
-const meter = new Meter('meter1', [{ type: 'ENERGY', value: 500 }], new Date().toISOString());
-meter.validate();
-```
-
-#### Reservation
-
-```javascript
-const reservation = new Reservation('res1', new Date().toISOString(), new Date().toISOString(), 'loc1', 'evse1', { id: 'user1', name: 'John Doe'  });
-reservation.validate();
-```
-
-#### Tariff
-
-```javascript
-const tariff = new Tariff('tariff1', [{ type: 'TIME', price: 2.00, step_size: 300 }]);
-tariff.validate();
-```
-
-#### User
-
-```javascript
-const user = new User('user1', 'John Doe', 'john.doe@example.com');
-user.validate();
-```
+In this example, the `node-ocpi` library is used to validate incoming data for a new charging location.
 
 ## Contributing
 
@@ -131,4 +145,3 @@ Contributions to `node-ocpi` are always welcome. To contribute:
 ## License
 
 `node-ocpi` is released under the MIT License. See the [LICENSE](LICENSE.md) file for more details.
-
