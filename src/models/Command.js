@@ -107,6 +107,4 @@ class Command {
     }
 }
 
-module.exports = {
-    Command,
-};
+module.exports = Command

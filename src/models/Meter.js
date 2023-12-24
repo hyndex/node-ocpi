@@ -26,6 +26,4 @@ class Meter {
 }
 
 
-module.exports = {
-    Meter,
-};
+module.exports = Meter

@@ -62,6 +62,4 @@ class EVSE {
 }
 
 
-module.exports = {
-    EVSE,
-};
+module.exports = EVSE

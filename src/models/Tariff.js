@@ -25,6 +25,4 @@ class Tariff {
 }
 
 
-module.exports = {
-    Tariff,
-};
+module.exports = Tariff

@@ -26,6 +26,4 @@ class Feedback {
     }
 }
 
-module.exports = {
-    Feedback,
-};
+module.exports = Feedback

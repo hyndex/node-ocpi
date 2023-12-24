@@ -70,6 +70,4 @@ class Location {
 
 
 
-module.exports = {
-    Location,
-};
+module.exports = Location;

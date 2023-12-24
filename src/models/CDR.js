@@ -69,6 +69,5 @@ class CDR {
     }
 }
 
-module.exports = {
-    CDR,
-};
+module.exports = CDR
+
