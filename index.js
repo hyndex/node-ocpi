@@ -33,6 +33,8 @@ const {
     AuthorizationInfo
 } = require('./src/models/Token');
 
+const OCPIResponse = require('./src/models/OCPIResponse');
+
 module.exports = {
     Location,
     EVSE,
@@ -60,5 +62,6 @@ module.exports = {
     EnergyContract,
     LocationReferences,
     Token,
-    AuthorizationInfo
+    AuthorizationInfo,
+    OCPIResponse,
 };
