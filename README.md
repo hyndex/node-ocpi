@@ -8,122 +8,96 @@
 
 ## Overview
 
-`node-ocpi` is a Node.js library designed for the implementation of the Open Charge Point Interface (OCPI) protocol. It provides structured models and validation for various OCPI entities, making it ideal for developers building applications for EV charging stations and related services.
+`node-ocpi` is a comprehensive Node.js library tailored for implementing the Open Charge Point Interface (OCPI) protocol. This library provides structured models and robust validation for a variety of OCPI entities, offering an essential toolkit for developers involved in electric vehicle (EV) charging station applications and services.
 
 ## Features
 
-- Models for key OCPI entities: `Location`, `EVSE`, `Connector`, `CDR`, `Command`, `Transaction`, `Feedback`, `Meter`, `Reservation`, `Tariff`, `User`, `Credentials`.
-- Comprehensive validation for OCPI-compliant data structures.
-- Supports a wide range of OCPI operations and functionalities.
+- Extensive models for key OCPI entities: `Location`, `EVSE`, `Connector`, `CDR`, `Command`, `Feedback`, `Meter`, `Reservation`, `Tariff`, `User`, `Transaction`, `Credentials`, `ChargingProfile`, `Token`, and more.
+- Comprehensive validation for OCPI-compliant data structures to ensure data integrity.
+- Supports a diverse range of OCPI operations and functionalities, facilitating the development of robust EV charging station services.
 
 ## Installation
 
-You can install `node-ocpi` using npm with the following command:
+Install `node-ocpi` via npm with the following command:
 
 ```bash
 npm install https://github.com/hyndex/node-ocpi
 ```
 
-This command fetches and installs the library directly from the specified GitHub repository.
+This command installs the library directly from the GitHub repository.
 
 ## Usage
 
-Import the models you need from the `node-ocpi` library as follows:
+Import the required models from `node-ocpi` as follows:
 
 ```javascript
-const { Location, EVSE, Connector, CDR, Command, Transaction, Feedback, Meter, Reservation, Tariff, User, Credentials } = require('node-ocpi');
+const {
+    Location, EVSE, Connector, CDR, Command, Feedback, Meter, Reservation, Tariff, User, Transaction, Credentials,
+    ChargingProfilePeriod, ChargingProfile, ActiveChargingProfile, ChargingProfileResponse, ActiveChargingProfileResult, ChargingProfileResult, ClearProfileResult, SetChargingProfile,
+    CommandResult, CommandResponse,
+    DisplayText,
+    EnergyContract, LocationReferences, Token, AuthorizationInfo
+} = require('node-ocpi');
 ```
 
 ### Model Usage Examples
 
-Below are examples showing how to create instances of each model and perform data validation using objects as input:
+Below are examples demonstrating how to instantiate and validate each model:
 
-#### Location
+#### Location Example
 
 ```javascript
-const locationData = {
-  id: 'loc1',
-  type: 'ON_STREET',
-  name: 'Main Street Charging Station',
-  address: '123 Main St',
-  city: 'Anytown',
-  postalCode: '12345',
-  country: 'USA',
-  coordinates: { latitude: 52.520008, longitude: 13.404954 },
-  // Other properties as needed
-};
-
-const location = new Location(locationData);
+const location = new Location({ /* Location data */ });
 location.validate();
 ```
 
-#### EVSE
+#### EVSE Example
 
 ```javascript
-const evseData = {
-  uid: 'evse1',
-  locationId: 'loc1',
-  // Other properties as needed
-};
-
-const evse = new EVSE(evseData);
+const evse = new EVSE({ /* EVSE data */ });
 evse.validate();
 ```
 
-#### Connector
+#### Connector Example
 
 ```javascript
-const connectorData = {
-  id: '1',
-  standard: 'IEC_62196_T2',
-  // Other properties as needed
-};
-
-const connector = new Connector(connectorData);
+const connector = new Connector({ /* Connector data */ });
 connector.validate();
 ```
 
-#### CDR
+#### CDR Example
 
 ```javascript
-const cdrData = {
-  id: 'cdr1',
-  startDateTime: '2023-01-01T00:00:00Z',
-  // Other properties as needed
-};
-
-const cdr = new CDR(cdrData);
+const cdr = new CDR({ /* CDR data */ });
 cdr.validate();
 ```
 
-#### Credentials
+#### Tariff Example
 
 ```javascript
-const credentialsData = { /* Your credentials data */ };
-const credentials = new Credentials(credentialsData);
-credentials.validate();
+const tariff = new Tariff({ /* Tariff data */ });
+tariff.validate();
 ```
 
+... (Continue with other models similarly)
 
-... (Continue with other models in a similar fashion)
+## Integration with Express.js
 
-## Using `node-ocpi` as Middleware in Express.js
-
-You can use `node-ocpi` as middleware in Express.js applications to handle OCPI data:
+`node-ocpi` can be seamlessly integrated as middleware in Express.js applications for handling OCPI data:
 
 ```javascript
 const express = require('express');
-const { Location, EVSE, Connector, CDR } = require('node-ocpi');
+const { Location } = require('node-ocpi');
 
 const app = express();
 app.use(express.json());
 
-// Example: POST route for adding a new charging location
+// Example: POST route for a new charging location
 app.post('/locations', (req, res) => {
   try {
     const location = new Location(req.body);
     location.validate();
-    // Save location to database or handle as needed
+    // Process location (e.g., save to database)
     res.status(201).send(location);
   } catch (error) {
     res.status(400).send(error.message);
@@ -133,15 +107,13 @@ app.post('/locations', (req, res) => {
 // More routes and logic...
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  console.log('Server running on port 3000');
 });
 ```
 
-In this example, the `node-ocpi` library is used to validate incoming data for a new charging location.
-
 ## Contributing
 
-Contributions to `node-ocpi` are always welcome. To contribute:
+We welcome contributions to `node-ocpi`. To contribute:
 
 1. Fork the repository.
 2. Create a new branch for your feature.
@@ -153,4 +125,4 @@ Contributions to `node-ocpi` are always welcome. To contribute:
 
 ## License
 
-`node-ocpi` is released under the MIT License. See the [LICENSE](LICENSE.md) file for more details.
+`node-ocpi` is available under the MIT License. See the [LICENSE](LICENSE.md) file for more details.
