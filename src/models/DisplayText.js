@@ -34,14 +34,6 @@ class DisplayText {
 // Role enumeration
 const roleEnum = ["CPO", "EMSP", "HUB", "NAP", "NSP", "OTHER", "SCSP"];
 
-// Example Usage
-let exampleText = new DisplayText('en', 'Example text for display.');
-try {
-    exampleText.validate();
-    console.log('Validation successful:', exampleText);
-} catch (error) {
-    console.error('Validation failed:', error.message);
-}
 
 module.exports = {
     DisplayText,

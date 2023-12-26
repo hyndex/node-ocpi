@@ -69,7 +69,7 @@ class CdrLocation {
             evseUid: Joi.string().required(),
             evseId: Joi.string().required(),
             connectorId: Joi.string().optional(),
-            connectorStandard: Joi.string().valid(...connectorTypeEnum).required(),
+            connectorStandard: Joi.string().required(), //Joi.string().valid(...connectorTypeEnum).required(),
             connectorFormat: Joi.string().valid(...connectorFormatEnum).required(),
             connectorPowerType: Joi.string().valid(...powerTypeEnum).required()
         });
@@ -90,7 +90,7 @@ class CdrToken {
             countryCode: Joi.string().length(2).required(),
             partyId: Joi.string().max(3).required(),
             uid: Joi.string().max(36).required(),
-            type: Joi.string().valid(...tokenTypeEnum).required(),
+            type: Joi.string().required(),//Joi.string().valid(...tokenTypeEnum).required(),
             contractId: Joi.string().max(36).required()
         });
     }
