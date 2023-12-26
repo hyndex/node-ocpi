@@ -65,6 +65,22 @@ class ExceptionalPeriod {
     }
 }
 
+// GeoLocation Class
+class GeoLocation {
+    constructor(latitude, longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    static get schema() {
+        return Joi.object({ 
+            latitude: Joi.string().regex(/-?[0-9]{1,3}\.[0-9]{5,7}/).required(),
+            longitude: Joi.string().regex(/-?[0-9]{1,3}\.[0-9]{5,7}/).required(),
+        });
+    }
+}
+
+
 // Facility Submodel
 class Facility {
     constructor(type) {

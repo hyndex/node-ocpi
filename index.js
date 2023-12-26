@@ -11,4 +11,54 @@ const User = require('./src/models/User');
 const Transaction = require('./src/models/Transaction');
 const Credentials = require('./src/models/Credentials');
 
-module.exports = { Location, EVSE, Connector, CDR, Connector, Command, Feedback, Meter, Reservation, Tariff, Transaction, User, Credentials };
+const {
+    ChargingProfilePeriod,
+    ChargingProfile,
+    ActiveChargingProfile,
+    ChargingProfileResponse,
+    ActiveChargingProfileResult,
+    ChargingProfileResult,
+    ClearProfileResult,
+    SetChargingProfile
+} = require('./src/models/ChargingProfile');
+
+const { CommandResult, CommandResponse } = require('./src/models/CommandResult');
+
+const { DisplayText, roleEnum } = require('./src/models/DisplayText');
+
+const {
+    EnergyContract,
+    LocationReferences,
+    Token,
+    AuthorizationInfo
+} = require('./src/models/Token');
+
+module.exports = {
+    Location,
+    EVSE,
+    Connector,
+    CDR,
+    Command,
+    Feedback,
+    Meter,
+    Reservation,
+    Tariff,
+    User,
+    Transaction,
+    Credentials,
+    ChargingProfilePeriod,
+    ChargingProfile,
+    ActiveChargingProfile,
+    ChargingProfileResponse,
+    ActiveChargingProfileResult,
+    ChargingProfileResult,
+    ClearProfileResult,
+    SetChargingProfile,
+    CommandResult,
+    CommandResponse,
+    DisplayText,
+    EnergyContract,
+    LocationReferences,
+    Token,
+    AuthorizationInfo
+};
