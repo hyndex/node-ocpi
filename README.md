@@ -12,7 +12,7 @@
 
 ## Features
 
-- Extensive models for key OCPI entities: `Location`, `EVSE`, `Connector`, `CDR`, `Command`, `Feedback`, `Meter`, `Reservation`, `Tariff`, `User`, `Transaction`, `Credentials`, `ChargingProfile`, `Token`, and more.
+- Extensive models for key OCPI entities: `Location`, `EVSE`, `Connector`, `CDR`, `Command`, `Feedback`, `Meter`, `Reservation`, `Tariff`, `User`, `Transaction`, `Credentials`, `ChargingProfilePeriod`, `ChargingProfile`, `ActiveChargingProfile`, `ChargingProfileResponse`, `ActiveChargingProfileResult`, `ChargingProfileResult`, `ClearProfileResult`, `SetChargingProfile`,`CommandResult`, `CommandResponse`, `DisplayText`, `EnergyContract`, `LocationReferences`, `Token`, `AuthorizationInfo`, and more.
 - Comprehensive validation for OCPI-compliant data structures to ensure data integrity.
 - Supports a diverse range of OCPI operations and functionalities, facilitating the development of robust EV charging station services.
 
